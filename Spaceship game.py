@@ -34,6 +34,7 @@ def spawn_enemy():
 
 
 def main():
+    pygame.mixer.pre_init(44100,16,2,4096)
     pygame.init()
 
     global sirina, duzina, enemy_positions, font, score, win
@@ -54,8 +55,13 @@ def main():
 
     score = 0
 
+    pygame.mixer.music.load('Sunflower (Instrumental).mp3')
+    pygame.mixer.music.set_volume(0.3)
+    pygame.mixer.music.play(-1,5.3)
+
     run = True
     while run:
+
         score += 1
         value = random.random()
         if value > 0.80:
@@ -81,6 +87,7 @@ def main():
             run = False
 
     while True:
+        pygame.mixer.music.pause()
         pygame.time.delay(100)
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
